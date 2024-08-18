@@ -597,7 +597,7 @@ def load_state_dict_guess_config(sd, output_vae=True, output_clip=True, output_c
 
 def load_diffusion_model_state_dict(sd, model_options={}): #load unet in diffusers or regular format
     dtype = model_options.get("dtype", None)
-
+    print(dtype)
     #Allow loading unets from checkpoint files
     diffusion_model_prefix = model_detection.unet_prefix_from_state_dict(sd)
     temp_sd = comcells.utils.state_dict_prefix_replace(sd, {diffusion_model_prefix: ""}, filter_keys=True)
@@ -610,7 +610,9 @@ def load_diffusion_model_state_dict(sd, model_options={}): #load unet in diffuse
 
     if model_config is not None:
         new_sd = sd
+        print("model config is not none")
     else:
+        print("no model options")
         new_sd = model_detection.convert_diffusers_mmdit(sd, "")
         if new_sd is not None: #diffusers mmdit
             model_config = model_detection.model_config_from_unet(new_sd, "")
