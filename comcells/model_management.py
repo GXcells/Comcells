@@ -582,7 +582,7 @@ def unet_offload_device():
     if vram_state == VRAMState.HIGH_VRAM:
         return get_torch_device()
     else:
-        return torch.device("cuda")
+        return torch.device("cuda")##i nnormal omfyUi it was "cpu" instead of cuda, but i ntotoro it was CUDA so it allows to load the model i nGPU and not in normal RAM that otherwise overfill
 
 def unet_inital_load_device(parameters, dtype):
     torch_dev = get_torch_device()
